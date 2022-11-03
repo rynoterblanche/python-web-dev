@@ -1,0 +1,1 @@
+Starter repo for python web dev projects

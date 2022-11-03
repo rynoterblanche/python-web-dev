@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Workflow: {{workflow.name}}{% endblock %}
+
+{% block content %}
+    <h1>{{workflow.name}}</h1>
+
+    <a href="{% url 'edit' workflow.id %}">Change this workflow</a> <br>
+    <a href="{% url 'delete' workflow.id %}">Delete this workflow</a> <br>
+    <a href="{% url 'welcome' %}">Home</a>
+{% endblock %}

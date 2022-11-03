@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+    <h1>Welcome to your Web App!</h1>
+    <p>
+        This is a demo django application
+    </p>
+
+    <h2>Workflows</h2>
+    <ul>
+        {% for workflow in workflows %}
+            <li>
+                <a href="{% url 'detail' workflow.id %}">
+                    {{ workflow.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'tasks' %}">Tasks list</a>
+{% endblock %}

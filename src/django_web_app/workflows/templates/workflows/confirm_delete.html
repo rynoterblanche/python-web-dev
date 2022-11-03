@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Workflow: {{workflow.name}}{% endblock %}
+
+{% block content %}
+<h1>Delete {{workflow.name}}</h1>
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure?</p>
+
+    <button type="submit">Yes</button>
+    <a href="{% url 'detail' workflow.id %}">No, take me back</a>
+</form>
+{% endblock %}
