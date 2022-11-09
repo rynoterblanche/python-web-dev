@@ -17,3 +17,16 @@ Some might find this architectural approach an overkill for smaller, self-contai
 I have seen time and time again that even the smallest business critical application can eventually grow to become 
 unmanageable with bad architectural design. Following clean architecture and DDD principles early on can help prevent 
 this.
+
+### Sources Of Inspiration:
+
+https://www.youtube.com/watch?v=o_TH-Y78tt4
+
+https://www.youtube.com/watch?v=DJtef410XaM
+https://rhodesmill.org/brandon/slides/2014-07-pyohio/clean-architecture/
+
+https://medium.com/21buttons-tech/clean-architecture-in-django-d326a4ab86a9
+
+https://sdediego.hashnode.dev/django-clean-architecture
+
+https://breadcrumbscollector.tech/python-the-clean-architecture-in-2021/
