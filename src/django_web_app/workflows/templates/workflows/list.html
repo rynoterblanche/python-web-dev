@@ -7,7 +7,7 @@
     <ul>
         {% for workflow in workflows %}
             <li>
-                <a>
+                <a href="{% url 'detail' workflow.id %}">
                     {{ workflow.name }}
                 </a>
             </li>

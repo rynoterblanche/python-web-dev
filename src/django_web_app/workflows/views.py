@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 from workflows.forms import WorkflowForm
-from workflows.models import Workflow, Task
+from workflows.models import WorkflowModel, TaskModel
 from workflows.serializers import WorkflowsListSerializer
 
 
@@ -19,24 +19,14 @@ class WorkflowsView:
         return render(self.request, "workflows/list.html", body)
 
 
-# def render(
-#     request, template_name, context=None, content_type=None, status=None, using=None
-# ):
-#     """
-#     Return an HttpResponse whose content is filled with the result of calling
-#     django.template.loader.render_to_string() with the passed arguments.
-#     """
-#     content = loader.render_to_string(template_name, context, request, using=using)
-#     return HttpResponse(content, content_type, status)
-
 def detail(request, id):
-    workflow = get_object_or_404(Workflow, pk=id)
+    workflow = get_object_or_404(WorkflowModel, pk=id)
     return render(request, "workflows/detail.html", {"workflow": workflow})
 
 
 def tasks_list(request):
     return render(request, "workflows/tasks_list.html",
-                  {"tasks": Task.objects.all()})
+                  {"tasks": TaskModel.objects.all()})
 
 
 def new(request):
@@ -51,7 +41,7 @@ def new(request):
 
 
 def edit(request, id):
-    workflow = get_object_or_404(Workflow, pk=id)
+    workflow = get_object_or_404(WorkflowModel, pk=id)
     if request.method == "POST":
         form = WorkflowForm(request.POST, instance=workflow)
         if form.is_valid():
@@ -63,7 +53,7 @@ def edit(request, id):
 
 
 def delete(request, id):
-    workflow = get_object_or_404(Workflow, pk=id)
+    workflow = get_object_or_404(WorkflowModel, pk=id)
     if request.method == "POST":
         workflow.delete()
         return redirect("welcome")

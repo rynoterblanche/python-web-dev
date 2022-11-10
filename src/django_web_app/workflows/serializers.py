@@ -10,5 +10,7 @@ class WorkflowSerializer:
     @staticmethod
     def serialize(workflow):
         return {
-            'name': str(workflow.name)
+            'id': str(workflow.id),
+            'name': str(workflow.name),
+            'is_complete': str(workflow.is_complete)
         }

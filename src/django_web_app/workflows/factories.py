@@ -1,10 +1,10 @@
 from workflows.interactors import GetAllWorkflowsInteractor
-from workflows.repositories import WorkflowsRepo
+from workflows.repositories import DjangoWorkflowsRepository
 from workflows.views import WorkflowsView
 
 
 def create_workflows_repo():
-    return WorkflowsRepo()
+    return DjangoWorkflowsRepository()
 
 
 def create_get_all_workflows_interactor():

@@ -1,16 +1,15 @@
-import uuid
 from typing import List
 
 from src.core.entities.workflow_aggregate.workflow_task import WorkflowTask
 
 
 class Workflow:
-    id: uuid.UUID
+    id: int
     name: str
     tasks: List[WorkflowTask]
 
-    def __init__(self, name: str, tasks: List[WorkflowTask]):
-        self.id = uuid.uuid4()
+    def __init__(self, id: int, name: str, tasks: List[WorkflowTask]):
+        self.id = id
         self.name = name
         self.tasks = tasks
 

@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 from django_web_app.views import ViewWrapper
-from website.views import date, about
 from workflows.factories import create_workflows_view
 
 # path('', welcome, name="welcome"),
@@ -25,8 +24,6 @@ from workflows.factories import create_workflows_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', ViewWrapper.as_view(view_creator_func=create_workflows_view), name="workflows"),
-    path('date', date),
-    path('about', about),
+    path('', ViewWrapper.as_view(view_creator_func=create_workflows_view), name="home"),
     path('workflows/', include('workflows.urls'))
 ]
