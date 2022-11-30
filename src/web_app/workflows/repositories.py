@@ -2,18 +2,16 @@ from typing import List
 
 from src.core.entities.workflow_aggregate.workflow import Workflow
 from src.core.entities.workflow_aggregate.workflow_task import WorkflowTask
-from src.core.interfaces.repositories.workflows import WorkflowsRepository
+from src.core.interfaces.repositories.workflows import WorkflowRepository
 from workflows.models import WorkflowModel, TaskModel
 
 
-class DjangoWorkflowsRepository(WorkflowsRepository):
+class DjangoWorkflowsRepository(WorkflowRepository):
 
     def get_by_id(self, workflow_id: int) -> Workflow:
         raise NotImplementedError()
 
     def list(self) -> List[Workflow]:
-        # return Workflow.objects.all()
-
         workflow_models = WorkflowModel.objects.all()
 
         return [self._map_workflow(model) for model in workflow_models]
