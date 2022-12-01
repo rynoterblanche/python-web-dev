@@ -3,7 +3,7 @@ A simple REST API demo using FastAPI.
 
 ### Running the API server
 ```
-uvicorn workflows:app --reload
+uvicorn main:app --reload
 ```
 
 ### To load API docs visit either:

@@ -1,7 +1,12 @@
-import uvicorn
-from fastapi import FastAPI, HTTPException
+from typing import List
 
-app = FastAPI()
+from fastapi import APIRouter, HTTPException
+
+from schemas.workflow_schema import WorkflowResponseSchema
+
+WorkflowRouter = APIRouter(
+    prefix="/api/workflows", tags=["workflow"]
+)
 
 db = [
     {"id": 1, "name": "Run Game Price Checks", "state": "not_started", "priority": 5},
@@ -10,12 +15,7 @@ db = [
 ]
 
 
-@app.get("/")
-def home():
-    return {'message': "FastAPI Demo"}
-
-
-@app.get("/api/workflows")
+@WorkflowRouter.get("/", response_model=List[WorkflowResponseSchema])
 def get_workflows(state: str = None, priority: int = None) -> list:
     result = db
 
@@ -28,14 +28,10 @@ def get_workflows(state: str = None, priority: int = None) -> list:
     return result
 
 
-@app.get("/api/workflows/{id}")
+@WorkflowRouter.get("/{id}", response_model=WorkflowResponseSchema)
 def workflow_by_id(id: int) -> dict:
     result = [wf for wf in db if wf['id'] == id]
     if result:
         return result[0]
 
     raise HTTPException(status_code=404, detail=f"No workflow found for id '{id}'")
-
-
-if __name__ == "__main__":
-    uvicorn.run("workflows:app", reload=True)
