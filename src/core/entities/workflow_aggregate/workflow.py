@@ -15,11 +15,10 @@ class Workflow:
 
     @property
     def is_complete(self) -> bool:
+        if len(self.tasks) == 0:
+            return False
+
         if all(task.is_done for task in self.tasks):
             return True
 
         return False
-
-    def execute(self) -> None:
-        # TODO - submit / execute tasks (async operation)
-        raise NotImplementedError()

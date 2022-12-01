@@ -20,13 +20,6 @@ class WorkflowTask:
         self.parameters = parameters
         self.state = TaskState.PENDING
 
-    def run(self) -> None:
-        self.state = TaskState.RUNNING
-
-        # TODO - execute command with parameters here
-
-        self.state = TaskState.COMPLETE
-
     @property
     def is_done(self):
         return self.state == TaskState.COMPLETE
