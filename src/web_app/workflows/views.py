@@ -2,26 +2,35 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from workflows.forms import WorkflowForm
 from workflows.models import WorkflowModel, TaskModel
-from workflows.serializers import WorkflowsListSerializer
+from workflows.serializers import WorkflowsListSerializer, WorkflowSerializer
 
 
 class WorkflowsView:
 
-    def __init__(self, request, get_all_workflows_interactor=None):
+    def __init__(self, request, workflow_interactor=None):
         self.request = request
-        self.get_all_workflows_interactor = get_all_workflows_interactor
+        self.workflow_interactor = workflow_interactor
 
     def get(self):
-        workflows = self.get_all_workflows_interactor.execute()
+        workflows = self.workflow_interactor.get_all()
 
         body = {"workflows": WorkflowsListSerializer.serialize(workflows)}
 
         return render(self.request, "workflows/list.html", body)
 
 
-def detail(request, id):
-    workflow = get_object_or_404(WorkflowModel, pk=id)
-    return render(request, "workflows/detail.html", {"workflow": workflow})
+class WorkflowDetailView:
+
+    def __init__(self, request, workflow_interactor=None):
+        self.request = request
+        self.workflow_interactor = workflow_interactor
+
+    def get(self, id: int):
+        workflow = self.workflow_interactor.get_by_id(id)
+
+        body = {"workflow": WorkflowSerializer.serialize(workflow)}
+
+        return render(self.request, "workflows/detail.html", body)
 
 
 def tasks_list(request):

@@ -9,11 +9,11 @@ from workflows.models import WorkflowModel, TaskModel
 class DjangoWorkflowsRepository(WorkflowRepository):
 
     def get_by_id(self, workflow_id: int) -> Workflow:
-        raise NotImplementedError()
+        workflow = WorkflowModel.objects.get(pk=workflow_id)
+        return self._map_workflow(workflow)
 
     def list(self) -> List[Workflow]:
         workflow_models = WorkflowModel.objects.all()
-
         return [self._map_workflow(model) for model in workflow_models]
 
     def _map_workflow(self, model: WorkflowModel) -> Workflow:

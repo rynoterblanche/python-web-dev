@@ -1,16 +1,21 @@
-from workflows.interactors import GetAllWorkflowsInteractor
+from workflows.interactors import WorkflowInteractor
 from workflows.repositories import DjangoWorkflowsRepository
-from workflows.views import WorkflowsView
+from workflows.views import WorkflowsView, WorkflowDetailView
 
 
 def create_workflows_repo():
     return DjangoWorkflowsRepository()
 
 
-def create_get_all_workflows_interactor():
-    return GetAllWorkflowsInteractor(workflows_repo=create_workflows_repo())
+def create_workflow_interactor():
+    return WorkflowInteractor(workflows_repo=create_workflows_repo())
 
 
 def create_workflows_view(request, **kwargs):
     return WorkflowsView(request=request,
-                         get_all_workflows_interactor=create_get_all_workflows_interactor())
+                         workflow_interactor=create_workflow_interactor())
+
+
+def create_workflow_detail_view(request, **kwargs):
+    return WorkflowDetailView(request=request,
+                              workflow_interactor=create_workflow_interactor())
