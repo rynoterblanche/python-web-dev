@@ -1,6 +1,6 @@
-from workflows.interactors import WorkflowInteractor
-from workflows.repositories import DjangoWorkflowsRepository
-from workflows.views import WorkflowsView, WorkflowDetailView
+from .interactors import WorkflowInteractor
+from .repositories import DjangoWorkflowsRepository
+from .views import WorkflowsView, WorkflowDetailView
 
 
 def create_workflows_repo():

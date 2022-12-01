@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-from workflows.forms import WorkflowForm
-from workflows.models import WorkflowModel, TaskModel
-from workflows.serializers import WorkflowsListSerializer, WorkflowSerializer
+from .forms import WorkflowForm
+from .models import WorkflowModel, TaskModel
+from .serializers import WorkflowsListSerializer, WorkflowSerializer
 
 
 class WorkflowsView:

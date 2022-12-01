@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from workflows.models import WorkflowModel
+from .models import WorkflowModel
 
 
 class WorkflowForm(ModelForm):

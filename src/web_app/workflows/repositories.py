@@ -3,7 +3,7 @@ from typing import List
 from src.core.entities.workflow_aggregate.workflow import Workflow
 from src.core.entities.workflow_aggregate.workflow_task import WorkflowTask
 from src.core.interfaces.repositories.workflows import WorkflowRepository
-from workflows.models import WorkflowModel, TaskModel
+from .models import WorkflowModel, TaskModel
 
 
 class DjangoWorkflowsRepository(WorkflowRepository):

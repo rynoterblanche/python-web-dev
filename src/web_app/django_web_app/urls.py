@@ -16,11 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from django_web_app.views import ViewWrapper
+from .views import ViewWrapper
 from workflows.factories import create_workflows_view
-
-# path('', welcome, name="welcome"),
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
