@@ -1,6 +1,9 @@
 This is a starter repo for python web development that aims to use clean architecture and DDD principles to separate 
 core business logic from implementation details such as data sources and web frameworks.
 
+This repo aims to use Django and FastAPI as examples of 2 different frameworks that could depend on the same core domain 
+entities & abstractions
+
 ## The Goal
 Decouple the high level policy that is your business logic from all other details in your system. Web frameworks, APIs, 
 UIs, data sources & even cloud platforms are all details that your business logic should not have to depend on.
