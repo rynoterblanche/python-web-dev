@@ -1,9 +1,9 @@
 from django.forms import ModelForm
 
-from .models import WorkflowModel
+from src.web_app.workflow.models import Workflow
 
 
 class WorkflowForm(ModelForm):
     class Meta:
-        model = WorkflowModel
+        model = Workflow
         fields = '__all__'

@@ -23,5 +23,11 @@ python manage.py makemigrations
 python manage.py showmigrations
 
 # Apply migrations
+
 python manage.py migrate
+```
+
+### Running Unit Tests
+```
+python ./src/web_app/manage.py test tests/unit_tests/web_app
 ```

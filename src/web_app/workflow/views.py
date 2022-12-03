@@ -1,10 +1,10 @@
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, get_object_or_404, redirect
 
-from .forms import WorkflowForm
-from .interactors import WorkflowInteractor
-from .models import WorkflowModel, TaskModel
-from .serializers import WorkflowsListSerializer, WorkflowSerializer
+from src.web_app.workflow.forms import WorkflowForm
+from src.web_app.workflow.interactors import WorkflowInteractor
+from src.web_app.workflow.models import Workflow, Task
+from src.web_app.workflow.serializers import WorkflowsListSerializer, WorkflowSerializer
 
 
 class WorkflowsView:
@@ -18,7 +18,7 @@ class WorkflowsView:
 
         body = {"workflows": WorkflowsListSerializer.serialize(workflows)}
 
-        return render(self.request, "workflows/list.html", body)
+        return render(self.request, "workflow/list.html", body)
 
 
 class WorkflowDetailView:
@@ -32,12 +32,12 @@ class WorkflowDetailView:
 
         body = {"workflow": WorkflowSerializer.serialize(workflow)}
 
-        return render(self.request, "workflows/detail.html", body)
+        return render(self.request, "workflow/detail.html", body)
 
 
 def tasks_list(request):
-    return render(request, "workflows/tasks_list.html",
-                  {"tasks": TaskModel.objects.all()})
+    return render(request, "workflow/tasks_list.html",
+                  {"tasks": Task.objects.all()})
 
 
 def new(request):
@@ -48,11 +48,11 @@ def new(request):
             return redirect("welcome")
     else:
         form = WorkflowForm()
-    return render(request, "workflows/new.html", {"form": form})
+    return render(request, "workflow/new.html", {"form": form})
 
 
 def edit(request, id):
-    workflow = get_object_or_404(WorkflowModel, pk=id)
+    workflow = get_object_or_404(Workflow, pk=id)
     if request.method == "POST":
         form = WorkflowForm(request.POST, instance=workflow)
         if form.is_valid():
@@ -60,13 +60,13 @@ def edit(request, id):
             return redirect("detail", id)
     else:
         form = WorkflowForm(instance=workflow)
-    return render(request, "workflows/edit.html", {"form": form})
+    return render(request, "workflow/edit.html", {"form": form})
 
 
 def delete(request, id):
-    workflow = get_object_or_404(WorkflowModel, pk=id)
+    workflow = get_object_or_404(Workflow, pk=id)
     if request.method == "POST":
         workflow.delete()
         return redirect("welcome")
     else:
-        return render(request, "workflows/confirm_delete.html", {"workflow": workflow})
+        return render(request, "workflow/confirm_delete.html", {"workflow": workflow})

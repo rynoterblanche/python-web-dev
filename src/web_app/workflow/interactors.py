@@ -1,7 +1,7 @@
 from typing import List
 
-from core.entities.workflow_aggregate.workflow import Workflow
-from core.interfaces.repositories.workflows import WorkflowRepository
+from src.core.entities.workflow_aggregate.workflow import Workflow
+from src.core.interfaces.repositories.workflows import WorkflowRepository
 
 
 class WorkflowInteractor:

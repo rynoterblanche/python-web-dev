@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 from .views import ViewWrapper
-from workflows.factories import create_workflows_view
+from src.web_app.workflow.factories import create_workflows_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', ViewWrapper.as_view(view_creator_func=create_workflows_view), name="home"),
-    path('workflows/', include('workflows.urls'))
+    path('workflow/', include('workflow.urls'))
 ]

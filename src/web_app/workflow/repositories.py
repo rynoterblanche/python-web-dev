@@ -3,7 +3,8 @@ from typing import List
 from src.core.entities.workflow_aggregate.workflow import Workflow
 from src.core.entities.workflow_aggregate.workflow_task import WorkflowTask
 from src.core.interfaces.repositories.workflows import WorkflowRepository
-from .models import WorkflowModel, TaskModel
+from src.web_app.workflow.models import Workflow as WorkflowModel
+from src.web_app.workflow.models import Task as TaskModel
 
 
 class DjangoWorkflowsRepository(WorkflowRepository):
@@ -16,7 +17,7 @@ class DjangoWorkflowsRepository(WorkflowRepository):
         workflow_models = WorkflowModel.objects.all()
         return [self._map_workflow(model) for model in workflow_models]
 
-    def _map_workflow(self, model: WorkflowModel) -> Workflow:
+    def _map_workflow(self, model: Workflow) -> Workflow:
         task_models = TaskModel.objects.all()
         return Workflow(id=model.id,
                         name=model.name,
