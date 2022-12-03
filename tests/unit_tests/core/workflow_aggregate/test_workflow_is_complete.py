@@ -1,7 +1,7 @@
 import unittest
 
-from entities.workflow_aggregate.workflow import Workflow
-from entities.workflow_aggregate.workflow_task import WorkflowTask, TaskState
+from src.core.entities.workflow_aggregate.workflow import Workflow
+from src.core.entities.workflow_aggregate.workflow_task import WorkflowTask, TaskState
 
 
 class WorkflowIsComplete(unittest.TestCase):
